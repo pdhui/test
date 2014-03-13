@@ -1,0 +1,299 @@
+{   
+    "catelists": [{
+            "catename": "时尚女装",
+            "order": "0",
+            "children": [{
+                    "catename": "外套",
+                    "order": "0-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "0-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "0-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "0-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "0-0-1"
+                    }]
+                }
+
+            ]
+        }, {
+            "catename": "品质男装",
+            "order": "1",
+            "children": [{
+                    "catename": "外套",
+                    "order": "1-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "1-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "1-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "1-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "1-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "1-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "1-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "1-1-2"
+                    }]
+                }
+
+            ]
+        }, {
+            "catename": "童装童鞋",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        },
+        {
+            "catename": "男士鞋靴",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        },
+        {
+            "catename": "女士鞋靴",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        },
+        {
+            "catename": "箱包配饰",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        },
+        {
+            "catename": "零食特产",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        },
+        {
+            "catename": "其它分类",
+            "order": "2",
+            "children": [{
+                    "catename": "外套",
+                    "order": "2-0",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-0-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-0-2"
+                    }]
+                }, {
+                    "catename": "外套",
+                    "order": "2-1",
+                    "children": [{
+                        "catename": "马甲",
+                        "order": "2-1-0"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-1"
+                    }, {
+                        "catename": "风衣",
+                        "order": "2-1-2"
+                    }]
+                }
+
+            ]
+        }
+
+
+
+    ]
+
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>template test</title>
+    <style type="text/css">
+    .codebox {
+        border: 1px solid #eee;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #32DAA4;
+        width: 620px;
+        margin: 0 auto;
+    }
+    .innerbox{
+        padding: 12px;
+        background-color: #fff;
+    }
+    </style>
+    <script src="/javascripts/jquery-1.8.1.js"></script>
+    <script src="/javascripts/template.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var templateel = $.template($("#template"));
+            $.getJSON("/data/navcate.json",null,function(date){
+                   
+                   templateel(date);
+            });
+            var texttemplate = $.template($("#ngtext"));
+            texttemplate({"name":"hello world"});
+        });
+    </script>
+</head>
+
+<body>
+    <div class="codebox">
+        <ul id="template">
+            <li gh-repeat="item in catelists">
+                <div class="catile_nav"><a>{item.catename}</a>
+                </div>
+                <div class="menu_panel">
+                    <dl gh-repeat="row in item.children">
+                        <dt>
+                            <h2>{row.catename}</h2>
+                        </dt>
+                        <dd gh-repeat="cate in row.children"><a href="">{cate.catename}</a>
+                        </dd>
+                    </dl>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="codebox">
+       <div class="innerbox">
+          <div id="ngtext" gh-text="name"></div>
+       </div>
+    </div>
+</body>
+
+</html>
