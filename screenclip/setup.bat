@@ -1,0 +1,1 @@
+D:\software\±à³Ì¿ª·¢\python\pyinstaller-2.0\PyInstaller.py -F -w -i E:\workspace\sublime_workspace\python\screenclip\1.ico  E:\workspace\sublime_workspace\python\screenclip\gtktest2.py
