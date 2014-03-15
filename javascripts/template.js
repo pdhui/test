@@ -1,11 +1,5 @@
 (function(window,$){
-/**
-	 * ghtemplate - js template engine
-	 * @version beta 1.0 - 2014-03-13
-	 * @link https://github.com/xu6658037/test
-	 * @author panda.xiong <xuweixiong2006@gmail.com>
-	 * @license MIT License, http://www.opensource.org/licenses/MIT
-	 */
+
     function ng(){
         var directives = {
             "ghRepeat":{
@@ -244,7 +238,7 @@
                             {                            
                                 if(!(injectservice = cache[value]))
                                 {
-                                    injectservice = this.service(value);;
+                                    injectservice = template.service(value);;
                                 }
                                 injdectlist.push(injectservice);
                             }   
