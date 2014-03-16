@@ -43,12 +43,35 @@
                             return;
                         value = parse(name)(scope);
                         $(element).text(value);
-                    }
+                    };
                 }
-            }        
+            },
+            "ghShow":{
+                compile:function(transclude){
+                    return function(scope,element,attrs){
+                        var name = attrs.ghShow, value;
+                        if(!name)
+                            value = false;
+                        else{                            
+                            value = parse(name)(scope);
+                            if(value == "true")
+                                value = true;
+                            else if(value == "false")
+                                value = false;
+
+                        }
+                        value ? $(element).show() : $(element).hide();
+                    };
+                }
+            }
         };
         function isString(str){
             return typeof str == "string"
+        }
+        function isDefined(val){
+            if (typeof val == "undefined")
+                return false;
+            return true;
         }
         function $getFn(fn,args,context){
             return function(){
@@ -60,7 +83,8 @@
             services : {},
             directives : directives,
             isString : isString,
-            $getFn : $getFn
+            $getFn : $getFn,
+            isDefined : isDefined
         });
        
     };
@@ -87,7 +111,7 @@
             for(var j=0,elen = elements.length; j < elen; j++)
             {
                 element = elements[j];
-                nodelinkFn = element.nodeType==8? null : applyToDirective(element,maxpriority);    
+                nodelinkFn = element.nodeType==8 ? null : applyToDirective(element,maxpriority);    
                 childLinkfn = (nodelinkFn && nodelinkFn.terminal) || !element.childNodes.length  ? null : compileNodes(element.childNodes);
                 linkfns.push(nodelinkFn);
                 linkfns.push(childLinkfn);
@@ -103,45 +127,50 @@
         function applyToDirective(element,maxpriority){
             var directive ,name,linkfn = [], haslink = false,
                  $attrs={}, value = "", childtransclude,
-                 priority, terminal = false, 
+                 priority, terminal = false, directiveCollection=[],terminalpriority=-Number.MAX_VALUE,
                  TAGNODE = 1, TEXTNODE = 3;
-            switch(element.nodeType)   
+            switch(element.nodeType)
             {
                 case TAGNODE:
                     for(var i=0,attrs=element.attributes,attrlen=attrs.length;i<attrlen;i++)
                     {
                         attribute = attrs[i];
-
                         name = getDirectiveName(attribute.nodeName);
                         if(isDirective(name))
                         {
-                            directive = ng.directives[name];                                    
+                            directive = ng.directives[name]; 
+                            priority = directive.priority;
+                            if(priority >= maxpriority) //递归compile时使用，只收集小于指定最大优先级的指令，因为大于等于指定最大优先级的指令已经被执行过了
+                                continue;                                                               
                             $attrs[name]  = $.trim(($.browser.msie && name == 'href')
                                 ? decodeURIComponent(element.getAttribute(name, 2))
                                 : attribute.value);
-                            directive.name = name;
-                            // if(directive.terminal)
-                            // {
-                            //     directives.push(directive);
-                            //     break;
-                            // } 
-                            priority = directive.priority;
-                            if(priority >= maxpriority)
-                                continue;
-                            if(value = directive.transclude)
-                            {
-                                if(value == "element")
-                                {
-                                   templatenode = $(element);
-                                   compilenode = $("<!--" + directive.name + ":" + $attrs[name] +" -->")
-                                   templatenode.replaceWith(compilenode);
-                                   childtransclude = compile(templatenode,priority);
-                                }
-                                terminal = true;
-                            }
-                            linkfn.push(directive.compile(childtransclude));                    
-                        }
+                            directive.name = name;  
+                            directiveCollection.push(directive) ;                                          
+                        }                     
                     }
+                    directiveCollection.sort(function(val,nextval){
+                        if(val < nextval)
+                            return true;
+                    });
+                    $.each(directiveCollection,function(index, directive){
+                        var value = null;
+                        if(terminalpriority > directive.priority)//只执行大于“结束优先级”的指令
+                            return;
+                        if(value = directive.transclude)
+                        {
+                            if(value == "element")
+                            {
+                               templatenode = $(element);
+                               compilenode = $("<!--" + directive.name + ":" + $attrs[name] +" -->")
+                               templatenode.replaceWith(compilenode);
+                               childtransclude = compile(templatenode,directive.priority);
+                            }
+                            terminal = true;
+                            terminalpriority = directive.priority;
+                        }
+                        linkfn.push(directive.compile(childtransclude));
+                    });
                     break;
                 case TEXTNODE: 
                     var value = $.trim(element.nodeValue),
@@ -149,7 +178,7 @@
                         textdirective, textdirectivelink;
                         if(!value)
                             return null;
-                    interpolate = template.service("interpolate")
+                    interpolate = template.service("interpolate");
                     textdirective = interpolate(value);
                     if(!ng.isString(textdirective))
                     {
@@ -214,7 +243,7 @@
         var injectservice, injdectlist = [], cache, injectnames;
         if(name && service)
         {                      
-            if($.isFunction(service) || (Array.isArray(service) && service.length > 0)){
+            if($.isFunction(service) || ($.isArray(service) && service.length > 0)){
                 ng.services[name] = service;
             }                    
         }
@@ -227,7 +256,7 @@
                 service = ng.services[name];
                 if(!service)
                     return;
-                if(Array.isArray(service))
+                if($.isArray(service))
                 {
                     if(service.length == 1)
                         service = service[0];
@@ -249,7 +278,10 @@
                 return cache[name] = service.apply(this,injdectlist);
            }  
         }  
-    }
+    };
+    template.directive = function(name, directiveFn){
+        ng.directives[name] = directiveFn;
+    };
     function parse(expr){
         var value,
             parser = template.service("parser") || stament;
@@ -263,8 +295,8 @@
             var datas = value.split(".");
             return function(context){
                 var result = context;
-                for(var i=0,len=datas.length;i<len;i++){
-                    result = result[datas[i]];
+                for(var i=0,len=datas.length;i<len && ng.isDefined(result);i++){
+                    result = result[datas[i]];                  
                 }
                 return result;         
             }
@@ -289,6 +321,23 @@
             }
         };
     });
+    template.directive("ghIf",{
+        compile:function(transclude){
+                    return function(scope,element,attrs){
+                        var name = attrs.ghIf, value;
+                        if(!name)
+                            value = false;
+                        else{                            
+                            value = parse(name)(scope);
+                            if(value == "true")
+                                value = true;
+                            else if(value == "false")
+                                value = false;
+
+                        }
+                        value ? null : $(element).remove();
+                    };
+                }});
     $.fn.extend({"template":template});
     $.template = template;
 })(window,$);
