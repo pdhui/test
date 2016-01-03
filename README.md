@@ -1,25 +1,25 @@
 panda.xiong
 ====
-ghjs ģ������ ���԰� beta 1.0
+ghjs 模板引擎 测试版 beta 1.0
 
-�ı��˴�ͳģ��������"< >"��"{ }"��Ϊ�﷨ָ���ģʽ��ʹ���Զ����html��������Ϊ������﷨��ʹhtml�ļ��Ľṹ���õĳ��֣������ᱻ�������ƻ���
+基于angularJs 精简出来的一个模板引擎。改变了传统模板引擎以"< >"或"{ }"作为语法指令的模式，使用自定义的html的属性作为引擎的语法，使html文件的结构更好的呈现，而不会被引擎所破坏。
 
-����������jquery���ʹ�ã�ͨ��
-var template =$("#id").template()��$.template($("#id"))�Ϳ��Ըı�html�ṹ��Ȼ��ͨ�����ص�template������ֱ�ӵ���template��context)��context�����ݲֿ⣬һ��js���󣬾Ϳ��Ը���ģ����ֵ��
+本引擎结合了jquery插件使用，通过
+var template =$("#id").template()或$.template($("#id"))就可以改变html结构，然后通过返回的template函数，直接调用template（context)，context是数据仓库，一个js对象，就可以给该模板填值。
 
-������Ҳ�ṩ�˽ӿ���ʹ���߿��Զ����ַ������������﷨ָ������Լ����������html�ṹ��
+本引擎也提供了接口让使用者可自定义字符串解析器和语法指令，用以自己解析特殊的html结构。
 
-�÷�ָ�ϣ�
-ָ�ָ�����һ��html�����ԣ�ĿǰҲֻ֧�����ԣ�ͨ���Զ������Կ��Կ��Ƹ������ڵ��html�ṹ����Ϊ�����������html�ṹ��
-  1.gh-repeat -- ѭ��ָ�ѭ����ʾ����Ԫ�غ�������Ԫ���ǡ�
-  2.gh-text -- ��ʾscope�����ֵ
-  3.gh-show -- ͨ�������ж��Ƿ���ʾ��Ԫ��
-  4.gh-if -- ͨ�������ж��Ƿ��ҳ�����Ƴ���Ԫ��
-����ģ��������������ܲ���ע��ķ�ʽʹ�ã���������Ⱦ����ȫ�ֱ�����
-  1. interpolate�� ��ע��˷������ϵͳ���õķ������ڽ���{ xxx}�����������
+用法指南：
+指令：指令就是一个html的属性，目前也只支持属性，通过自定义属性可以控制该所属节点的html结构，可为它生成所需的html结构。
+  1.gh-repeat -- 循环指令，循环显示所在元素和它的子元素们。
+  2.gh-text -- 显示scope里面的值
+  3.gh-show -- 通过变量判断是否显示该元素
+  4.gh-if -- 通过变量判断是否从页面上移除该元素
+服务：模板所需的其它功能采用注入的方式使用，而不会污染其它全局变量。
+  1. interpolate： 可注入此服务替代系统内置的服务，用于解析{ xxx}括号里的内容
   
-���巽ʽ���ɿ�testĿ¼�µ� template.js��
+定义方式：可看test目录下的 template.js。
 
 
-���ĵ��������ƣ���л֧��......
+本文档后续完善，多谢支持......
 
